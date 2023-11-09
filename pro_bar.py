@@ -18,9 +18,7 @@ class progress_bar():
         self.persent = percent
         self.round = round_num
 
-    def show(self,step):
-        # by = int(self.total / self.length)
-
+    def show(self,step,PS = ""):
         if self.persent:
             print('\r' +
                 self.lb +
@@ -28,13 +26,17 @@ class progress_bar():
                 self.u * (self.length - int(float(step / self.total) * self.length)) +
                 self.rb +
                 ' ' +
-                str(round(((step / self.total) * 100),self.round)) +
-                '%',
+                str(format(((step / self.total) * 100),('.' + str(self.round) + 'f'))) +
+                '%' +
+                ' ' +
+                PS,
                 end = '')    
         else:
             print('\r' +
                 self.lb +
                 self.f * (int(step / self.total) * self.length) +
                 self.u * (self.length - (int(step / self.total) * self.length)) +
-                self.rb,
+                self.rb +
+                ' ' +
+                PS,
                 end = '')
